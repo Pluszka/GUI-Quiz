@@ -16,6 +16,11 @@ class QuizGUI:
         self.canvas.grid(row=1, column=0, columnspan=2)
 
 
-        false = PhotoImage(file='')
-        self.right_button = Button()
+        false_img = PhotoImage(file='images/false.png')
+        self.left_button = Button(image=false_img, highlightthickness=0,)
+        self.left_button.grid(row=2, column=0)
+
+        true_img = PhotoImage(file='images/true.png')
+        self.right_button = Button(image=true_img, highlightthickness=0,)
+        self.right_button.grid(row=2, column=1)
         self.root.mainloop()
