@@ -4,14 +4,14 @@ THEME_COLOR = "#375362"
 
 class QuizGUI:
 
-    def __init__(self, current_score, quiz_brain: QuizBrain):
+    def __init__(self, quiz_brain: QuizBrain):
         self.quiz = quiz_brain
 
         self.root = Tk()
         self.root.title('QuizApp')
         self.root.config(padx= 20, pady=20, bg=THEME_COLOR)
 
-        self.score_label = Label(text=f'Score: {current_score}', bg=THEME_COLOR, fg='white', font=('Arial', 15, 'italic'))
+        self.score_label = Label(text=f'Score: 0', bg=THEME_COLOR, fg='white', font=('Arial', 15, 'italic'))
         self.score_label.grid(row=0, column=1)
 
         self.canvas = Canvas(width=300, height=250, highlightthickness=0)
@@ -31,6 +31,7 @@ class QuizGUI:
         self.root.mainloop()
 
     def get_question(self):
+        self.score_label.config(text=f'Score: {self.quiz.score}')
         self.canvas.config(bg='white')
         self.canvas.itemconfig(self.question_text, text=self.quiz.next_question())
 
