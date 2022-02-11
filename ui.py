@@ -31,9 +31,14 @@ class QuizGUI:
         self.root.mainloop()
 
     def get_question(self):
-        self.score_label.config(text=f'Score: {self.quiz.score}')
         self.canvas.config(bg='white')
-        self.canvas.itemconfig(self.question_text, text=self.quiz.next_question())
+        if self.quiz.still_has_questions():
+            self.score_label.config(text=f'Score: {self.quiz.score}')
+            self.canvas.itemconfig(self.question_text, text=self.quiz.next_question())
+        else:
+            self.canvas.itemconfig(self.question_text, text='Congratulations, you just finished the quiz.')
+            self.right_button.config(state='disabled')
+            self.left_button.config(state='disabled')
 
     def its_true(self):
         self.feedback('True')
