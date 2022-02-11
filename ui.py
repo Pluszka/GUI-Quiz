@@ -3,7 +3,7 @@ THEME_COLOR = "#375362"
 
 class QuizGUI:
 
-    def __init__(self, current_score, question):
+    def __init__(self, current_score):
         self.root = Tk()
         self.root.title('QuizApp')
         self.root.config(padx= 20, pady=20, bg=THEME_COLOR)
@@ -12,8 +12,8 @@ class QuizGUI:
         self.score_label.grid(row=0, column=1)
 
         self.canvas = Canvas(width=300, height=250, highlightthickness=0)
-        self.canvas.create_text(150, 75, text=question, font=('Arial', 20, 'italic'))
-        self.canvas.grid(row=1, column=0, columnspan=2)
+        self.question_text = self.canvas.create_text(150, 125, text='Question soon', font=('Arial', 20, 'italic'), fill=THEME_COLOR)
+        self.canvas.grid(row=1, column=0, columnspan=2, pady=50)
 
 
         false_img = PhotoImage(file='images/false.png')
