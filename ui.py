@@ -18,19 +18,25 @@ class QuizGUI:
         self.question_text = self.canvas.create_text(150, 125, width=275, text='Question soon', font=('Arial', 18, 'italic'), fill=THEME_COLOR)
         self.canvas.grid(row=1, column=0, columnspan=2, pady=50)
 
-
         false_img = PhotoImage(file='images/false.png')
-        self.left_button = Button(image=false_img, highlightthickness=0,)
+        self.left_button = Button(image=false_img, highlightthickness=0, command=self.its_false)
         self.left_button.grid(row=2, column=0)
 
         true_img = PhotoImage(file='images/true.png')
-        self.right_button = Button(image=true_img, highlightthickness=0,)
+        self.right_button = Button(image=true_img, highlightthickness=0, command=self.its_true)
         self.right_button.grid(row=2, column=1)
 
         self.get_question()
 
         self.root.mainloop()
 
-
     def get_question(self):
         self.canvas.itemconfig(self.question_text, text=self.quiz.next_question())
+
+    def its_true(self):
+        answer = 'True'
+        score = self.quiz.check_answer(answer)
+
+    def its_false(self):
+        answer = 'False'
+        score = self.quiz.check_answer(answer)
