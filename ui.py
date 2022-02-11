@@ -31,12 +31,18 @@ class QuizGUI:
         self.root.mainloop()
 
     def get_question(self):
+        self.canvas.config(bg='white')
         self.canvas.itemconfig(self.question_text, text=self.quiz.next_question())
 
     def its_true(self):
-        answer = 'True'
-        score = self.quiz.check_answer(answer)
+        self.feedback('True')
 
     def its_false(self):
-        answer = 'False'
-        score = self.quiz.check_answer(answer)
+        self.feedback('False')
+
+    def feedback(self, answer):
+        if self.quiz.check_answer(answer):
+            self.canvas.config(bg='green')
+        else:
+            self.canvas.config(bg='red')
+        self.root.after(1000, self.get_question)
